@@ -8,13 +8,13 @@ google_analytics: "UA-46465113-2"
 # UI configs
 title: "American builder hardword floor"
 subtitle: "A site about flooring!"
-author: "Dan"
+author: "Andy Nguyen"
 header:
  title: "American builder hardword floor"
  subtitle: "by Andy Nguyen"
 footer:
  name: "Work in progress"
- bio: "American builder hardword floor"
+ bio: "All about flooring"
  github: "We offer excellent hardwood floor refinishing services, installation work, sales, and sanding. With us, you can even receive repair services. Turn to our company, and we will match your requirements in a timely and efficient manner."
 web_design: "DN"
 # Configure which exif data to display
