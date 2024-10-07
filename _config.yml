@@ -1,28 +1,65 @@
-# Base configs
-baseurl: "https://americanbuilderhardwoodfloor.com/"
-#baseurl: "" # Comment the above line and uncomment this to test the website locally
-image_fulls_loc: "/images/fulls"
-image_thumbs_loc: "/images/thumbs"
-google_analytics: "UA-46465113-2"
+# url: https://y7kim.github.io
+# baseurl: "https://americanbuilderhardwoodfloor.com/"
 
-# UI configs
-title: "American builder hardword floor"
-subtitle: "A site about flooring!"
-author: "Andy Nguyen"
-header:
- title: "American builder hardword floor"
- subtitle: "by Andy Nguyen"
-footer:
- name: "Work in progress"
- bio: "All about flooring"
- github: "We offer excellent hardwood floor refinishing services, installation work, sales, and sanding. With us, you can even receive repair services. Turn to our company, and we will match your requirements in a timely and efficient manner."
-web_design: "DN"
-# Configure which exif data to display
-# Tag is the actual exif tag, icon is a fontawesome icon. Use JSON notation without line breaks
-exif: '[{"tag": "Model", "icon": "camera-retro"}, {"tag": "FNumber", "icon": "dot-circle-o"}, {"tag": "ExposureTime", "icon": "clock-o"}, {"tag": "ISOSpeedRatings", "icon": "info-circle"}]'
-social_urls:
-  twitter: "https://www.twitter.com/"
-  instagram: "https://www.instagram.com/"
-  dribbble: "https://dribbble.com/"
-  linkedin: "https://in.linkedin.com/in/"
-  github: "https://www.github.com/"
+# Site settings
+title: Awesome Title
+email: your-email@domain.com
+description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
+
+
+# Team names, titles and social links
+people:
+- name: Kay Garland
+  pic: 1
+  position: Lead Designer
+  social:
+    - title: twitter
+      url: #
+    - title: facebook
+      url: #
+    - title: stack-overflow
+      url: #
+
+- name: Larry Parker
+  pic: 2
+  position: Lead Marketer
+  social:
+    - title: twitter
+      url: #
+    - title: facebook
+      url: #
+    - title: linkedin
+      url: #
+
+- name: Diana Petersen
+  pic: 3
+  position: Lead Developer
+  social:
+    - title: twitter
+      url: #
+    - title: facebook
+      url: #
+    - title: google-plus
+      url: #
+
+# Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
+social:
+  - title: twitter
+    url: http://twitter.com/jekyllrb
+  - title: facebook
+    url:
+  - title: stack-overflow
+    url: http://stackoverflow.com/questions/tagged/jekyll
+  - title: bitbucket 
+    url: http://bitbucket.org/jekyll
+  - title: github
+    url: http://github.com/jekyll
+
+# Postal address (add as many lines as necessary)
+address:
+  - line: 3481 Melrose Place
+  - line: Beverly Hills, CA 90210
+
+# Build settings
+markdown: kramdown
+permalink: pretty
