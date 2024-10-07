@@ -37,6 +37,22 @@ And, of course, you don't want my name at the bottom to show up. You can change 
 
 Note: You only need to build the website if you make changes such as replacing the images, modifying the css styles, etc.
  
+### Portfolio
+
+Portfolio projects are in '/_posts'
+
+Images are in '/img/portfolio'
+
+### About
+
+Images are in '/img/about/'
+
+### Team
+
+Team members and info are in '_config.yml'
+
+Images are in '/img/team/'
+
 ## ProTips
 
 ### Resize Images
