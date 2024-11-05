@@ -1,0 +1,15 @@
+---
+title: House in Scituate
+subtitle: Installation new hardwood floor
+layout: default
+modal-id: 5
+date: 2018-08-23
+img: 5I.jpg
+thumbnail: 5T.jpg
+alt: image-alt
+project-date: August 2018
+client: Scituate
+category: Installation
+description: In Scituate, MA, we installed new hardwood floors and applied a white stain for a fresh, modern look. Finished with three coats of water-based sealant, the floors are both beautiful and durable.
+
+---
