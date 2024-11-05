@@ -1,0 +1,15 @@
+---
+title: Condo in Boston
+subtitle: Reparation after water damage
+layout: default
+modal-id: 4
+date: 2018-06-13
+img: 4I.jpg
+thumbnail: 4T.jpg
+alt: image-alt
+project-date: June 2018
+client: Boston
+category: Reparation
+description: We repaired water-damaged, buckled flooring in a Boston condominium by reinstalling the subfloor and laying new hardwood. Finished with Nordic Seal and three coats of water-based finish, the floors now have a sleek, modern appearance.
+
+---
