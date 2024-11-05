@@ -1,0 +1,15 @@
+---
+title: House in Boston
+subtitle: Sanding and refinished an entire house
+layout: default
+modal-id: 1
+date: 2017-05-20
+img: 3I.jpg
+thumbnail: 3T.jpg
+alt: image-alt
+project-date: May 2017
+client: Boston
+category: Sanding and refinishing
+description: We expertly sanded and refinished the hardwood floors on Appleton Street, applying a natural seal for enhanced durability. Finished with Bona water-based products, the floors now boast a beautiful, eco-friendly sheen.
+
+---

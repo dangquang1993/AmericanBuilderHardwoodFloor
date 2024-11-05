@@ -3,11 +3,11 @@ title: Condo in St Boston
 subtitle: Refinishing condo in St Boston
 layout: default
 modal-id: 1
-date: 2016-04-19
+date: 2014-04-19
 img: 1I.jpg
 thumbnail: 1T.jpg
 alt: image-alt
-project-date: April 2016
+project-date: April 2014
 client: South Boston
 category: Refinishing
 description: Our team expertly refinished a condo in South Boston, transforming worn and dated hardwood floors into a sleek and modern surface. Through meticulous sanding, staining, and sealing, we revitalized the space, enhancing its charm and adding lasting value.

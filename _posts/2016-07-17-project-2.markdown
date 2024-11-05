@@ -3,11 +3,11 @@ title: Single family in Quincy
 subtitle: New floor installation in Quincy
 layout: default
 modal-id: 2
-date: 2014-07-17
+date: 2016-07-17
 img: 2I.jpg
 thumbnail: 2T.jpg
 alt: image-alt
-project-date: July 2014
+project-date: July 2016
 client: Quincy
 category: Installation
 description: Our skilled team completed a hardwood floor installation in a Quincy home, delivering a flawless and elegant finish. From selecting premium materials to precise fitting and finishing, we enhanced the home's aesthetic appeal and durability, ensuring a warm and inviting atmosphere..
