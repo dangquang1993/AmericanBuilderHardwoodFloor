@@ -336,6 +336,13 @@ section h2.section-heading {
     font-size: 40px;
 }
 
+section h2.section-small-heading {
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-transform: none;
+    font-size: 40px;
+}
+
 section h3.section-subheading {
     margin-bottom: 75px;
     line-height: 1.75;
