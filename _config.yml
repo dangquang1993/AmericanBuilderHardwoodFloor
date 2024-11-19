@@ -8,8 +8,8 @@ description: "Write an awesome description for your new site here. You can edit 
 
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 social:
-  - title: facebook
-    url: https://www.facebook.com/andynguyen1978
+  # - title: facebook
+  #   url: https://www.facebook.com/andynguyen1978
   - title: google
     url: https://maps.app.goo.gl/JXvJqGBh7SBh4Kyy6
 
