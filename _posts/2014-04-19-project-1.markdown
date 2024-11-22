@@ -1,6 +1,6 @@
 ---
 title: Condo in Boston
-subtitle: Hardwood floor refinishing condo in Boston
+subtitle: Refinishing a condo floor in Boston
 layout: default
 modal-id: 1
 date: 2014-04-19
