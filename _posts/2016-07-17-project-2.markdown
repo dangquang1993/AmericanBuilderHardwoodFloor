@@ -1,6 +1,6 @@
 ---
 title: Single family in Quincy
-subtitle: New floor installation in Quincy
+subtitle: Hardwood floor installation in Quincy
 layout: default
 modal-id: 2
 date: 2016-07-17

@@ -10,6 +10,6 @@ alt: image-alt
 project-date: June 2018
 client: Boston
 category: Reparation
-description: We repaired water-damaged, buckled flooring in a Boston condominium by reinstalling the subfloor and laying new hardwood. Finished with Nordic Seal and three coats of water-based finish, the floors now have a sleek, modern appearance.
+description: We repaired water-damaged, buckled hardwood flooring in a Boston condominium by reinstalling the subfloor and laying new hardwood. Finished with Nordic Seal and three coats of water-based finish, the floors now have a sleek, modern appearance.
 
 ---
