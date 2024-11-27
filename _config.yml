@@ -21,3 +21,6 @@ address:
 # Build settings
 markdown: kramdown
 permalink: pretty
+
+image_fulls_loc: "/img/various/full"
+image_thumbs_loc: "/img/various/thumb"
