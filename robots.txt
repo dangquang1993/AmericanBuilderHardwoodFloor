@@ -1,4 +1,25 @@
 User-agent: *
-Disallow: 
+Allow: /
+
+# Sitemap
+Sitemap: https://americanbuilderhardwoodfloor.com/sitemap.xml
+
+# Disallow irrelevant files
+Disallow: /_site/
+Disallow: /_includes/
+Disallow: /_layouts/
+Disallow: /_data/
+Disallow: /_plugins/
+Disallow: /mail/
+Disallow: /js/
+Disallow: /css/
+Disallow: *.yml
+Disallow: *.json
+Disallow: LICENSE
+Disallow: README.md
+
+# Allow important directories
+Allow: /img/
+Allow: /posts/ 
 Disallow: /cgi-bin/
 Sitemap: https://americanbuilderhardwoodfloor.com/sitemap.xml

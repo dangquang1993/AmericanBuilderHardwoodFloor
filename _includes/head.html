@@ -2,8 +2,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
-    <title>Hardwood Floor Installation/Refinishing Services in Quincy</title>
-<meta name="description" content="Transform your space with expert hardwood floor installation/refinishing services in Quincy. American Builder crafts beautiful, lasting floors for every home.">
+    <title>{% if page.title %}{{ page.title }} | American Builder Hardwood Floor{% else %}Hardwood Floor Installation/Refinishing Services in Quincy{% endif %}</title>
+<meta name="description" content="{% if page.description %}{{ page.description }}{% else %}Transform your space with expert hardwood floor installation/refinishing services in Quincy. American Builder crafts beautiful, lasting floors for every home.{% endif %}">
 
 <!-- Facebook Meta Tags -->
 <meta property="og:url" content="https://americanbuilderhardwoodfloor.com/">
@@ -35,6 +35,73 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Structured Data for Local Business -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "American Builder Hardwood Floor",
+      "image": "https://americanbuilderhardwoodfloor.com/img/header-bg.jpg",
+      "url": "https://americanbuilderhardwoodfloor.com",
+      "telephone": "(617) 222-0001",
+      "email": "americanbuilderhardwood@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "11 Forest Ave",
+        "addressLocality": "Quincy",
+        "addressRegion": "MA",
+        "postalCode": "02169",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 42.2528,
+        "longitude": -71.0024
+      },
+      "description": "Expert hardwood floor installation, refinishing, and repair services in the Greater Boston Area. Over 20 years of experience.",
+      "priceRange": "$$",
+      "serviceArea": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": 42.2528,
+          "longitude": -71.0024
+        },
+        "geoRadius": "30000"
+      },
+      "areaServed": [
+        "Quincy, MA",
+        "Boston, MA", 
+        "Cambridge, MA",
+        "Somerville, MA"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Hardwood Floor Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Hardwood Floor Installation",
+            "description": "Professional hardwood floor installation for residential and commercial properties"
+          },
+          {
+            "@type": "Offer", 
+            "name": "Hardwood Floor Refinishing",
+            "description": "Expert sanding and refinishing to restore your hardwood floors"
+          },
+          {
+            "@type": "Offer",
+            "name": "Hardwood Floor Repair",
+            "description": "Professional repair services for damaged hardwood floors"
+          }
+        ]
+      },
+      "sameAs": [
+        "https://maps.app.goo.gl/JXvJqGBh7SBh4Kyy6"
+      ]
+    }
+    </script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
