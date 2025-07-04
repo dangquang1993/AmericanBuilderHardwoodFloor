@@ -266,6 +266,7 @@ fieldset[disabled] .btn-xl.active {
 }
 
 header {
+    position: relative;
     text-align: center;
     color: #fff;
     background-attachment: scroll;
@@ -278,15 +279,20 @@ header {
     -o-background-size: cover;
 }
 
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1;
+}
+
 header .intro-text {
-    padding-top: 100px;
-    padding-bottom: 50px;
-    display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-    display: -ms-flexbox;  /* TWEENER - IE 10 */
-    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-    display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
 header .intro-container {
@@ -352,6 +358,97 @@ header .intro-text .intro-heading {
     }
 }
 
+/* Mobile Header Improvements */
+@media (max-width: 767px) {
+    header {
+        min-height: 100vh !important;
+        height: auto;
+        padding: 0;
+        margin: 0;
+    }
+    
+    header .intro-text {
+        padding-top: 120px !important;
+        padding-bottom: 50px !important;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    header .intro-container {
+        width: 100% !important;
+        max-width: 90%;
+        margin: 0 auto;
+        padding: 30px 20px !important;
+        background-color: #fed33678;
+    }
+    
+    header .intro-text .intro-lead-in {
+        font-size: 28px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 20px !important;
+        color: #222;
+    }
+    
+    /* Remove any right margin/padding */
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+    
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* Navigation improvements for mobile */
+    .navbar-brand {
+        font-size: 18px !important;
+        padding: 15px 15px !important;
+    }
+    
+    .cta-nav .btn {
+        margin: 10px 15px !important;
+        display: block !important;
+        width: calc(100% - 30px) !important;
+        text-align: center !important;
+        font-size: 16px !important;
+        padding: 12px 20px !important;
+    }
+    
+    .navbar-nav {
+        margin: 0 !important;
+    }
+    
+    .navbar-nav > li > a {
+        padding: 15px 20px !important;
+        font-size: 16px !important;
+    }
+}
+
+/* Tablet view adjustments */
+@media (min-width: 768px) and (max-width: 991px) {
+    header {
+        min-height: 90vh;
+    }
+    
+    header .intro-text .intro-lead-in {
+        font-size: 32px;
+    }
+    
+    header .intro-container {
+        width: 90%;
+    }
+}
+
 section {
     padding: 100px 0;
 }
@@ -396,8 +493,9 @@ section h3.section-content {
 }
 
 .service-heading {
-    margin: 15px 0;
-    text-transform: none;
+    color: #{{ site.data.template.color.primary }};
+    margin-bottom: 20px;
+    font-weight: 600;
 }
 
 #portfolio .portfolio-item {
@@ -910,4 +1008,201 @@ img::-moz-selection {
 
 body {
     webkit-tap-highlight-color: #{{ site.data.template.color.primary }};
+}
+
+/*!
+ * Start Bootstrap - Agency Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Blog Card Styles */
+.blog-card {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    padding: 25px;
+    height: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    border-color: #{{ site.data.template.color.primary }};
+}
+
+.blog-card h4 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+.blog-card h4 a {
+    color: #{{ site.data.template.color.primary }};
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.blog-card h4 a:hover {
+    color: #{{ site.data.template.color.secondary }};
+    text-decoration: none;
+}
+
+.blog-card p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+#daily-blog {
+    padding: 60px 0;
+}
+
+#daily-blog .mb-4 {
+    margin-bottom: 30px !important;
+}
+
+/* Navigation Call-to-Action Button */
+.cta-nav .btn {
+    margin-left: 15px;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 8px 16px;
+}
+
+.cta-nav .btn:hover {
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+/* Services Section Improvements */
+.service-heading {
+    color: #{{ site.data.template.color.primary }};
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.fa-stack:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+/* Header Improvements */
+header {
+    position: relative;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1;
+}
+
+header .intro-text {
+    position: relative;
+    z-index: 2;
+}
+
+/* Contact Section Schema Markup */
+.contact-schema {
+    display: none;
+}
+
+/* Mobile Header Improvements */
+@media (max-width: 767px) {
+    header {
+        min-height: 100vh !important;
+        height: auto;
+        padding: 0;
+        margin: 0;
+    }
+    
+    header .intro-text {
+        padding-top: 120px !important;
+        padding-bottom: 50px !important;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    header .intro-container {
+        width: 100% !important;
+        max-width: 90%;
+        margin: 0 auto;
+        padding: 30px 20px !important;
+        background-color: #fed33678;
+    }
+    
+    header .intro-text .intro-lead-in {
+        font-size: 28px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 20px !important;
+        color: #222;
+    }
+    
+    /* Remove any right margin/padding */
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+    
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* Navigation improvements for mobile */
+    .navbar-brand {
+        font-size: 18px !important;
+        padding: 15px 15px !important;
+    }
+    
+    .cta-nav .btn {
+        margin: 10px 15px !important;
+        display: block !important;
+        width: calc(100% - 30px) !important;
+        text-align: center !important;
+        font-size: 16px !important;
+        padding: 12px 20px !important;
+    }
+    
+    .navbar-nav {
+        margin: 0 !important;
+    }
+    
+    .navbar-nav > li > a {
+        padding: 15px 20px !important;
+        font-size: 16px !important;
+    }
+}
+
+/* Tablet view adjustments */
+@media (min-width: 768px) and (max-width: 991px) {
+    header {
+        min-height: 90vh;
+    }
+    
+    header .intro-text .intro-lead-in {
+        font-size: 32px;
+    }
+    
+    header .intro-container {
+        width: 90%;
+    }
 }
