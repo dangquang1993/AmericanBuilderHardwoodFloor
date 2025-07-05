@@ -1239,6 +1239,85 @@ header .intro-text {
     border-radius: 4px;
 }
 
+.progress-steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 20px;
+}   
+
+.step-indicators {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+.step-indicator {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e9ecef;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.step-indicator.active {
+    background: #fed136;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.step-indicator.completed {
+    background: #28a745;
+    color: #fff;
+}
+
+.step-indicator:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: calc(100vw / 4 - 60px);
+    height: 2px;
+    background: #e9ecef;
+    transform: translateY(-50%);
+    z-index: -1;
+}
+
+.estimator-step {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.estimator-step.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.step-title {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.step-description {
+    color: #6c757d;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
 .faq-item:hover::before {
     transform: scaleY(1);
 }
@@ -1267,12 +1346,6 @@ header .intro-text {
     background: linear-gradient(135deg, #fff 0%, #fafafa 100%);
 }
 
-.progress-steps {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-}   
 .faq-question:hover {
     color: #fed136;
     background: linear-gradient(135deg, #fffdf5 0%, #fff9e6 100%);
@@ -1383,17 +1456,6 @@ header .intro-text {
     position: relative;
     overflow: hidden;
     border: 2px solid transparent;
-}
-
-.step-indicator.active {
-    background: #fed136;
-    color: #fff;
-    transform: scale(1.1);
-}
-
-.step-indicator.completed {
-    background: #28a745;
-    color: #fff;
 }
 
 .testimonial-card:hover::before {
