@@ -35,3 +35,55 @@ $('div.modal').on('show.bs.modal', function() {
 		}
 	}
 });
+
+// FAQ Accordion Functionality
+$(document).ready(function() {
+    $('.faq-question').click(function() {
+        var faqItem = $(this).parent('.faq-item');
+        var isActive = faqItem.hasClass('active');
+        
+        // Close all other FAQ items
+        $('.faq-item').removeClass('active');
+        $('.faq-item .faq-answer').slideUp(300);
+        $('.faq-item .faq-icon').text('+');
+        
+        // If this item wasn't active, open it
+        if (!isActive) {
+            faqItem.addClass('active');
+            faqItem.find('.faq-answer').slideDown(400);
+            faqItem.find('.faq-icon').text('−');
+        }
+    });
+    
+    // Optional: Open first FAQ item by default
+    // $('.faq-item:first-child .faq-question').click();
+    
+    // Scroll-triggered animations for testimonials and FAQs
+    function isInViewport(element) {
+        var rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    function animateOnScroll() {
+        $('.testimonial-card, .faq-item').each(function() {
+            if (isInViewport(this) && !$(this).hasClass('animated')) {
+                $(this).addClass('animated');
+                $(this).css({
+                    'opacity': '0',
+                    'transform': 'translateY(30px)'
+                }).animate({
+                    'opacity': '1'
+                }, 600).css('transform', 'translateY(0)');
+            }
+        });
+    }
+
+    // Run on scroll and on load
+    $(window).on('scroll', animateOnScroll);
+    animateOnScroll();
+});
