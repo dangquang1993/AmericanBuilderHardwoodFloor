@@ -105,6 +105,59 @@ document.addEventListener('DOMContentLoaded', function() {
             checkbox.addEventListener('change', updateAdditionalServices);
         });
 
+        // Specific event listeners for conditional fields
+        const trimWorkCheckbox = document.getElementById('trim-work');
+        if (trimWorkCheckbox) {
+            trimWorkCheckbox.addEventListener('change', function() {
+                const trimGroup = document.getElementById('trim-length-group');
+                if (trimGroup) {
+                    trimGroup.style.display = this.checked ? 'block' : 'none';
+                    
+                    // Update placeholder text based on available room data
+                    if (this.checked) {
+                        const trimLengthInput = document.getElementById('trim-length');
+                        if (trimLengthInput) {
+                            const lengthInput = parseFloat(document.getElementById('room-length').value) || 0;
+                            const widthInput = parseFloat(document.getElementById('room-width').value) || 0;
+                            const totalArea = parseFloat(document.getElementById('square-footage').value) || 0;
+                            
+                            if (lengthInput > 0 && widthInput > 0) {
+                                const perimeter = 2 * (lengthInput + widthInput);
+                                const unit = currentUnit === 'metric' ? 'm' : 'ft';
+                                trimLengthInput.placeholder = `Estimated: ${perimeter.toFixed(1)} ${unit}`;
+                            } else if (totalArea > 0) {
+                                let estimatedArea = totalArea;
+                                if (currentUnit === 'metric') {
+                                    estimatedArea = totalArea * SQM_TO_SQFT; // Convert to sq ft for calculation
+                                }
+                                const estimatedSide = Math.sqrt(estimatedArea);
+                                let estimatedPerimeter = 4 * estimatedSide;
+                                if (currentUnit === 'metric') {
+                                    estimatedPerimeter = estimatedPerimeter / METERS_TO_FEET; // Convert back to meters
+                                }
+                                const unit = currentUnit === 'metric' ? 'm' : 'ft';
+                                trimLengthInput.placeholder = `Estimated: ${estimatedPerimeter.toFixed(1)} ${unit} (based on area)`;
+                            } else {
+                                trimLengthInput.placeholder = 'Enter trim length or leave blank for estimate';
+                            }
+                        }
+                    }
+                }
+                updateAdditionalServices();
+            });
+        }
+
+        const stairsCheckbox = document.getElementById('stairs');
+        if (stairsCheckbox) {
+            stairsCheckbox.addEventListener('change', function() {
+                const stairsGroup = document.getElementById('stairs-count-group');
+                if (stairsGroup) {
+                    stairsGroup.style.display = this.checked ? 'block' : 'none';
+                }
+                updateAdditionalServices();
+            });
+        }
+
         // Unit toggle buttons
         document.querySelectorAll('.unit-btn').forEach(btn => {
             btn.addEventListener('click', function() {
@@ -141,6 +194,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Disable next button unless length/width have values
             updateNextButtonState();
         }
+        
+        // Update trim length placeholder if trim work is checked
+        updateTrimLengthPlaceholder();
     }
 
     function calculateSquareFootage() {
@@ -173,13 +229,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 nextBtn.disabled = false;
             }
         } else {
-            // Only clear if direct area is also empty
+            // Only clear if direct area also empty
             if (!directArea || !directArea.value) {
                 squareFootage.value = '';
             }
             
             updateNextButtonState();
         }
+        
+        // Update trim length placeholder if trim work is checked
+        updateTrimLengthPlaceholder();
     }
 
     function updateNextButtonState() {
@@ -277,8 +336,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateAdditionalServices() {
-        const selected = document.querySelectorAll('input[name="additionalServices"]:checked');
-        estimateData.additionalServices = Array.from(selected).map(cb => cb.value);
+        // Get all checked additional service checkboxes
+        const checkboxes = ['subfloor-prep', 'old-floor-removal', 'trim-work', 'stairs'];
+        const selected = [];
+        
+        checkboxes.forEach(id => {
+            const checkbox = document.getElementById(id);
+            if (checkbox && checkbox.checked) {
+                selected.push(id);
+            }
+        });
+        
+        estimateData.additionalServices = selected;
     }
 
     function enableNextButton(stepSelector) {
@@ -515,21 +584,27 @@ document.addEventListener('DOMContentLoaded', function() {
     window.calculateEstimate = function() {
         // Get total area from either length/width calculation or direct input
         let totalArea = 0;
+        let roomLength = 0;
+        let roomWidth = 0;
         const squareFootage = document.getElementById('square-footage');
         
         if (squareFootage && squareFootage.value) {
             totalArea = parseFloat(squareFootage.value);
         } else {
-            const length = parseFloat(document.getElementById('room-length').value) || 0;
-            const width = parseFloat(document.getElementById('room-width').value) || 0;
+            roomLength = parseFloat(document.getElementById('room-length').value) || 0;
+            roomWidth = parseFloat(document.getElementById('room-width').value) || 0;
             const directArea = parseFloat(document.getElementById('direct-area').value) || 0;
             
-            if (length > 0 && width > 0) {
-                totalArea = length * width;
+            if (roomLength > 0 && roomWidth > 0) {
+                totalArea = roomLength * roomWidth;
             } else if (directArea > 0) {
                 totalArea = directArea;
             }
         }
+        
+        // Also get the actual input values for trim estimation
+        const lengthInput = parseFloat(document.getElementById('room-length').value) || 0;
+        const widthInput = parseFloat(document.getElementById('room-width').value) || 0;
         
         if (totalArea <= 0) {
             alert('Please enter valid room dimensions or total area.');
@@ -577,11 +652,30 @@ document.addEventListener('DOMContentLoaded', function() {
         if (trimWork && trimWork.checked) {
             let trimLength = parseFloat(document.getElementById('trim-length').value);
             if (!trimLength) {
-                // Estimate trim length based on room perimeter
-                if (currentUnit === 'metric') {
-                    trimLength = (2 * (length + width)) * METERS_TO_FEET; // Convert to feet
+                // Estimate trim length based on room perimeter or area
+                if (lengthInput > 0 && widthInput > 0) {
+                    // Use actual room dimensions if available
+                    if (currentUnit === 'metric') {
+                        trimLength = (2 * (lengthInput + widthInput)) * METERS_TO_FEET; // Convert to feet
+                    } else {
+                        trimLength = 2 * (lengthInput + widthInput);
+                    }
                 } else {
-                    trimLength = 2 * (length + width);
+                    // Estimate perimeter based on area (assuming roughly square room)
+                    let areaForPerimeter = totalArea;
+                    if (currentUnit === 'metric') {
+                        // Convert to sq feet for estimation, then back to appropriate units
+                        areaForPerimeter = totalArea * SQM_TO_SQFT;
+                    }
+                    
+                    // Estimate side length assuming square room: side = sqrt(area)
+                    const estimatedSide = Math.sqrt(areaForPerimeter);
+                    trimLength = 4 * estimatedSide; // Perimeter of square room
+                    
+                    // If we're in metric but calculating in feet, convert back
+                    if (currentUnit === 'metric') {
+                        trimLength = trimLength / METERS_TO_FEET; // Convert back to meters for display
+                    }
                 }
             } else if (currentUnit === 'metric') {
                 trimLength = trimLength * METERS_TO_FEET; // Convert to feet for pricing
@@ -716,23 +810,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Show/hide conditional fields
-    document.addEventListener('change', function(e) {
-        if (e.target.id === 'stairs') {
-            const stairsGroup = document.getElementById('stairs-count-group');
-            if (stairsGroup) {
-                stairsGroup.style.display = e.target.checked ? 'block' : 'none';
-            }
-        }
-        
-        if (e.target.id === 'trim-work') {
-            const trimGroup = document.getElementById('trim-length-group');
-            if (trimGroup) {
-                trimGroup.style.display = e.target.checked ? 'block' : 'none';
-            }
-        }
-    });
-
     // Unit conversion functionality
     window.toggleUnit = function(unit) {
         const previousUnit = currentUnit;
@@ -755,6 +832,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Recalculate if needed
         calculateSquareFootage();
+        
+        // Update trim length placeholder if trim work is checked
+        updateTrimLengthPlaceholder();
     };
     
     function updateUnitLabels() {
@@ -846,6 +926,39 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             imperialPrices.forEach(el => el.style.display = 'inline');
             metricPrices.forEach(el => el.style.display = 'none');
+        }
+    }
+
+    function updateTrimLengthPlaceholder() {
+        const trimWorkCheckbox = document.getElementById('trim-work');
+        const trimLengthInput = document.getElementById('trim-length');
+        
+        if (!trimWorkCheckbox || !trimWorkCheckbox.checked || !trimLengthInput) {
+            return;
+        }
+        
+        const lengthInput = parseFloat(document.getElementById('room-length').value) || 0;
+        const widthInput = parseFloat(document.getElementById('room-width').value) || 0;
+        const totalArea = parseFloat(document.getElementById('square-footage').value) || 0;
+        
+        if (lengthInput > 0 && widthInput > 0) {
+            const perimeter = 2 * (lengthInput + widthInput);
+            const unit = currentUnit === 'metric' ? 'm' : 'ft';
+            trimLengthInput.placeholder = `Estimated: ${perimeter.toFixed(1)} ${unit}`;
+        } else if (totalArea > 0) {
+            let estimatedArea = totalArea;
+            if (currentUnit === 'metric') {
+                estimatedArea = totalArea * SQM_TO_SQFT; // Convert to sq ft for calculation
+            }
+            const estimatedSide = Math.sqrt(estimatedArea);
+            let estimatedPerimeter = 4 * estimatedSide;
+            if (currentUnit === 'metric') {
+                estimatedPerimeter = estimatedPerimeter / METERS_TO_FEET; // Convert back to meters
+            }
+            const unit = currentUnit === 'metric' ? 'm' : 'ft';
+            trimLengthInput.placeholder = `Estimated: ${estimatedPerimeter.toFixed(1)} ${unit} (based on area)`;
+        } else {
+            trimLengthInput.placeholder = 'Enter trim length or leave blank for estimate';
         }
     }
 });
