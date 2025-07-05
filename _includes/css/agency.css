@@ -2235,3 +2235,29 @@ header .intro-text {
         padding: 20px;
     }
 }
+
+/* Trust Badges */
+.trust-badges {
+    padding: 0px 0;
+}
+
+.trust-badge {
+    text-align: center;
+    padding: 20px;
+}
+
+.trust-badge i {
+    font-size: 48px;
+    color: #fec503;
+    margin-bottom: 15px;
+}
+
+.trust-badge h4 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.trust-badge p {
+    color: #666;
+    font-size: 13px;
+}
