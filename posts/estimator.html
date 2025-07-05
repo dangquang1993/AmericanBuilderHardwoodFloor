@@ -1,0 +1,306 @@
+---
+layout: secondary
+title: Hardwood Floors installation cost estimator
+description: "Get an instant estimate for your hardwood floor installation project. Calculate costs based on room size, wood type, and installation complexity. Request a free in-home consultation for accurate pricing."
+permalink: /estimator.html
+---
+
+<!-- Hardwood Floor Installation Cost Estimator -->
+<section id="estimator" class="bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Hardwood Floor Installation Cost Estimator</h2>
+                <h3 class="section-subheading text-muted">Get an instant estimate for your project</h3>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="estimator-container">
+                    <!-- Step 1: Room Measurements -->
+                    <div class="estimator-step active" id="step1">
+                        <h3>Step 1: Room Measurements</h3>
+                        
+                        <!-- Unit Selection -->
+                        <div class="unit-selection">
+                            <label class="unit-toggle">
+                                <span class="unit-label">Measurement System:</span>
+                                <div class="toggle-buttons">
+                                    <button type="button" class="unit-btn active" data-unit="imperial" onclick="toggleUnit('imperial')">
+                                        <i class="fa fa-flag-usa"></i> Imperial (ft)
+                                    </button>
+                                    <button type="button" class="unit-btn" data-unit="metric" onclick="toggleUnit('metric')">
+                                        <i class="fa fa-globe"></i> Metric (m)
+                                    </button>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="room-length">Room Length (<span id="length-unit">feet</span>):</label>
+                            <input type="number" id="room-length" class="form-control" placeholder="Enter length" min="0.1" max="100" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label for="room-width">Room Width (<span id="width-unit">feet</span>):</label>
+                            <input type="number" id="room-width" class="form-control" placeholder="Enter width" min="0.1" max="100" step="0.1">
+                        </div>
+                        
+                        <div class="calculation-divider">
+                            <span class="divider-text">OR</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="direct-area">
+                                Enter Total Area Directly (<span id="area-unit-direct">sq ft</span>):
+                                <small class="text-muted">Use this option if you already know your total square footage</small>
+                            </label>
+                            <input type="number" id="direct-area" class="form-control" placeholder="Enter total area" min="1" max="10000" step="0.1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="square-footage">Total Area (<span id="area-unit">sq ft</span>):</label>
+                            <input type="number" id="square-footage" class="form-control" placeholder="Calculated automatically or entered directly" readonly>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next Step</button>
+                    </div>
+
+                    <!-- Step 2: Wood Type Selection -->
+                    <div class="estimator-step" id="step2">
+                        <h3>Step 2: Choose Your Wood Type</h3>
+                        <div class="wood-options">
+                            <div class="wood-option" data-price="4">
+                                <input type="radio" name="wood-type" value="oak" id="oak">
+                                <label for="oak">
+                                    <div class="wood-card">
+                                        <h4>Red Oak</h4>
+                                        <p>Classic, durable choice</p>
+                                        <span class="price">
+                                            <span class="imperial-price">$4-6/sq ft</span>
+                                            <span class="metric-price" style="display: none;">$43-65/sq m</span>
+                                        </span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="wood-option" data-price="6">
+                                <input type="radio" name="wood-type" value="maple" id="maple">
+                                <label for="maple">
+                                    <div class="wood-card">
+                                        <h4>Maple</h4>
+                                        <p>Light, smooth finish</p>
+                                        <span class="price">
+                                            <span class="imperial-price">$6-8/sq ft</span>
+                                            <span class="metric-price" style="display: none;">$65-86/sq m</span>
+                                        </span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="wood-option" data-price="8">
+                                <input type="radio" name="wood-type" value="cherry" id="cherry">
+                                <label for="cherry">
+                                    <div class="wood-card">
+                                        <h4>Cherry</h4>
+                                        <p>Rich, warm tones</p>
+                                        <span class="price">
+                                            <span class="imperial-price">$8-12/sq ft</span>
+                                            <span class="metric-price" style="display: none;">$86-129/sq m</span>
+                                        </span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="wood-option" data-price="10">
+                                <input type="radio" name="wood-type" value="walnut" id="walnut">
+                                <label for="walnut">
+                                    <div class="wood-card">
+                                        <h4>Walnut</h4>
+                                        <p>Premium dark wood</p>
+                                        <span class="price">
+                                            <span class="imperial-price">$10-15/sq ft</span>
+                                            <span class="metric-price" style="display: none;">$108-161/sq m</span>
+                                        </span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="step-navigation">
+                            <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Previous</button>
+                            <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next Step</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Installation Complexity -->
+                    <div class="estimator-step" id="step3">
+                        <h3>Step 3: Installation Details</h3>
+                        <div class="form-group">
+                            <label for="installation-type">Installation Type:</label>
+                            <select id="installation-type" class="form-control">
+                                <option value="basic" data-multiplier="1">Basic Installation (nail down)</option>
+                                <option value="glue" data-multiplier="1.2">Glue Down Installation</option>
+                                <option value="floating" data-multiplier="1.1">Floating Floor</option>
+                                <option value="complex" data-multiplier="1.5">Complex Pattern/Diagonal</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Additional Services:</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="subfloor-prep" data-cost="2">
+                                    <span class="service-text">
+                                        Subfloor Preparation 
+                                        (<span class="imperial-price">+$2/sq ft</span><span class="metric-price" style="display: none;">+$22/sq m</span>)
+                                    </span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="old-floor-removal" data-cost="1.5">
+                                    <span class="service-text">
+                                        Old Floor Removal 
+                                        (<span class="imperial-price">+$1.50/sq ft</span><span class="metric-price" style="display: none;">+$16/sq m</span>)
+                                    </span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="trim-work" data-cost="3">
+                                    <span class="service-text">
+                                        Trim and Molding 
+                                        (<span class="imperial-price">+$3/linear ft</span><span class="metric-price" style="display: none;">+$10/linear m</span>)
+                                    </span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="stairs" data-cost="150">
+                                    <span class="service-text">Stair Installation (+$150/step)</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group" id="stairs-count-group" style="display: none;">
+                            <label for="stairs-count">Number of Steps:</label>
+                            <input type="number" id="stairs-count" class="form-control" min="1" max="20" value="1">
+                        </div>
+                        <div class="form-group" id="trim-length-group" style="display: none;">
+                            <label for="trim-length">Trim Length (<span id="trim-unit">linear feet</span>):</label>
+                            <input type="number" id="trim-length" class="form-control" min="0.1" max="500" step="0.1" placeholder="Estimated based on room size">
+                        </div>
+                        <div class="step-navigation">
+                            <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Previous</button>
+                            <button type="button" class="btn btn-primary" onclick="calculateEstimate()">Calculate Estimate</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Results -->
+                    <div class="estimator-step" id="step4">
+                        <h3>Your Hardwood Floor Installation Estimate</h3>
+                        <div class="estimate-results">
+                            <div class="estimate-breakdown">
+                                <div class="estimate-line">
+                                    <span>Materials Cost:</span>
+                                    <span id="materials-cost">$0</span>
+                                </div>
+                                <div class="estimate-line">
+                                    <span>Labor Cost:</span>
+                                    <span id="labor-cost">$0</span>
+                                </div>
+                                <div class="estimate-line" id="additional-services-line" style="display: none;">
+                                    <span>Additional Services:</span>
+                                    <span id="additional-cost">$0</span>
+                                </div>
+                                <div class="estimate-line total-line">
+                                    <span><strong>Total Estimated Cost:</strong></span>
+                                    <span id="total-cost"><strong>$0</strong></span>
+                                </div>
+                                <div class="estimate-range">
+                                    <p><em>Estimated range: <span id="cost-range">$0 - $0</span></em></p>
+                                </div>
+                            </div>
+                            
+                            <div class="estimate-disclaimer">
+                                <h4>Important Notes:</h4>
+                                <ul>
+                                    <li>This is an approximate estimate based on average costs</li>
+                                    <li>Final pricing depends on specific conditions and material availability</li>
+                                    <li>Additional costs may apply for difficult access or unusual conditions</li>
+                                    <li>Free in-home consultation provides accurate pricing</li>
+                                </ul>
+                            </div>
+
+                            <div class="estimate-actions">
+                                <button type="button" class="btn btn-success btn-lg" onclick="requestQuote()">
+                                    <i class="fa fa-phone"></i> Get Free In-Home Consultation
+                                </button>
+                                <button type="button" class="btn btn-primary" onclick="resetEstimator()">
+                                    <i class="fa fa-refresh"></i> Start New Estimate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress">
+                        <div class="progress-bar" id="progress-bar" style="width: 25%"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <span class="step-indicator active" data-step="1">1</span>
+                        <span class="step-indicator" data-step="2">2</span>
+                        <span class="step-indicator" data-step="3">3</span>
+                        <span class="step-indicator" data-step="4">4</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Modal for Quote Request -->
+<div class="modal fade" id="quoteModal" tabindex="-1" role="dialog" aria-labelledby="quoteModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="quoteModalLabel">Request Free In-Home Consultation</h4>
+            </div>
+            <div class="modal-body">
+                <form id="quote-form">
+                    <div class="form-group">
+                        <label for="quote-name">Name:</label>
+                        <input type="text" id="quote-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quote-phone">Phone:</label>
+                        <input type="tel" id="quote-phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quote-email">Email:</label>
+                        <input type="email" id="quote-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quote-address">Project Address:</label>
+                        <textarea id="quote-address" class="form-control" rows="2" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="quote-timeline">Preferred Timeline:</label>
+                        <select id="quote-timeline" class="form-control">
+                            <option value="asap">As soon as possible</option>
+                            <option value="month">Within 1 month</option>
+                            <option value="2months">Within 2-3 months</option>
+                            <option value="flexible">Flexible</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quote-notes">Additional Notes:</label>
+                        <textarea id="quote-notes" class="form-control" rows="3" placeholder="Tell us about your project..."></textarea>
+                    </div>
+                    <div class="estimate-summary" id="modal-estimate-summary"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" onclick="submitQuoteRequest()">
+                    Request Free Consultation
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ "/js/estimator.js" | prepend: site.baseurl }}"></script>
