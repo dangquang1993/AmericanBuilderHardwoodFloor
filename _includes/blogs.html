@@ -48,6 +48,97 @@
     margin-bottom: 30px !important;
 }
 
+/* Blog Pagination Styles */
+.blog-page {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.blog-page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.blog-navigation {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px 0;
+}
+
+.blog-nav-btn {
+    background: linear-gradient(135deg, #fed136 0%, #f39c12 100%);
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    margin: 0 10px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(254, 209, 54, 0.3);
+}
+
+.blog-nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(254, 209, 54, 0.4);
+    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+}
+
+.blog-nav-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.blog-page-indicator {
+    display: inline-block;
+    margin: 0 20px;
+    color: #666;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.blog-dots {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.blog-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ddd;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.blog-dot.active {
+    background: #fed136;
+    transform: scale(1.2);
+}
+
+.blog-dot:hover {
+    background: #fec503;
+}
+
+/* Mobile-specific blog pagination */
+@media (max-width: 768px) {
+    .blog-post-item:nth-child(n+4) {
+        display: none !important;
+    }
+    
+    .blog-page .row:nth-child(2) {
+        display: none !important;
+    }
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .blog-card {
@@ -57,6 +148,17 @@
     
     .blog-card h4 {
         font-size: 16px;
+    }
+    
+    .blog-nav-btn {
+        padding: 10px 20px;
+        margin: 0 5px;
+        font-size: 14px;
+    }
+    
+    .blog-page-indicator {
+        margin: 0 10px;
+        font-size: 14px;
     }
 }
 </style>
@@ -70,111 +172,305 @@
             </div>
         </div>
         
-        <!-- Blog Grid Layout -->
-        <div class="row">
-            <!-- Blog Post 1 -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="blog-card">
-                    <h4><a href="post1.html">Top 5 Hardwood Floor Trends</a></h4>
-                    <p>Discover the hottest hardwood floor trends this year, from wide-plank designs to eco-friendly finishes.</p>
+        <!-- Blog Grid Layout with Pagination -->
+        <div id="blog-container">
+            <!-- Page 1: Posts 1-6 -->
+            <div class="blog-page active" id="blog-page-1">
+                <div class="row">
+                    <!-- Blog Post 1 -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 blog-post-item">
+                        <div class="blog-card">
+                            <h4><a href="posts/blog/post1.html">Top 5 Hardwood Floor Trends</a></h4>
+                            <p>Discover the hottest hardwood floor trends this year, from wide-plank designs to eco-friendly finishes.</p>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 2 -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 blog-post-item">
+                        <div class="blog-card">
+                            <h4><a href="posts/blog/post2.html">How to Choose the Perfect Hardwood for Your Home</a></h4>
+                            <p>Learn how to select the right type of wood for your floors based on durability, style, and budget.</p>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 3 -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 blog-post-item">
+                        <div class="blog-card">
+                            <h4><a href="posts/blog/post3.html">Maintenance Tips to Keep Your Hardwood Floors Looking New</a></h4>
+                            <p>Follow these simple tips to maintain the beauty and longevity of your hardwood floors.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Blog Post 4 -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 blog-post-item">
+                        <div class="blog-card">
+                            <h4><a href="posts/blog/post4.html">The Benefits of Engineered Hardwood Floors</a></h4>
+                            <p>Explore why engineered hardwood floors are a great alternative to solid hardwood.</p>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 5 -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 blog-post-item">
+                        <div class="blog-card">
+                            <h4><a href="posts/blog/post5.html">Eco-Friendly Flooring Options for Your Home</a></h4>
+                            <p>Discover sustainable flooring options that are good for the environment and your home.</p>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 6 -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 blog-post-item">
+                        <div class="blog-card">
+                            <h4><a href="posts/blog/post6.html">How to Repair Scratches and Dents in Hardwood Floors</a></h4>
+                            <p>Learn easy DIY methods to fix scratches and dents in your hardwood floors.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Blog Post 2 -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="blog-card">
-                    <h4><a href="post2.html">How to Choose the Perfect Hardwood for Your Home</a></h4>
-                    <p>Learn how to select the right type of wood for your floors based on durability, style, and budget.</p>
+            <!-- Page 2: Posts 7-12 -->
+            <div class="blog-page" id="blog-page-2">
+                <div class="row">
+                    <!-- Blog Post 7 -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 blog-post-item">
+                        <div class="blog-card">
+                            <h4><a href="posts/blog/post7.html">Wide Plank vs. Narrow Plank Hardwood</a></h4>
+                            <p>How to Choose the Best Option for Your Home.</p>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 8 -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 blog-post-item">
+                        <div class="blog-card">
+                            <h4><a href="posts/blog/post8.html">The Complete Guide to Hardwood Flooring Grades and Finishes</a></h4>
+                            <p>Expert Advice from American Builder Hardwood Floor.</p>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 9 -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 blog-post-item">
+                        <div class="blog-card">
+                            <h4><a href="posts/blog/post9.html">Best Hardwood Flooring Options for Quincy, MA Homes</a></h4>
+                            <p>Local Climate Considerations from American Builder Hardwood Floor.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Blog Post 10 -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 blog-post-item">
+                        <div class="blog-card">
+                            <h4><a href="posts/blog/post10.html">Questions to Ask Before Hiring a Hardwood Flooring Contractor</a></h4>
+                            <p>Ensure You Choose the Right Professional for Your Quincy, MA Home.</p>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 11 -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 blog-post-item">
+                        <div class="blog-card">
+                            <h4><a href="posts/blog/post11.html">Best Hardwood Flooring for New England Homes</a></h4>
+                            <p>Learn about the best hardwood flooring options that can withstand the unique climate of New England.</p>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 12 -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 blog-post-item">
+                        <div class="blog-card">
+                            <h4><a href="posts/blog/post12.html">Comparing Hardwood Floor Finishes: Oil vs. Water-Based Polyurethane</a></h4>
+                            <p>Understand the pros and cons of different hardwood floor finishes to choose the best one for your home.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Blog Post 3 -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="blog-card">
-                    <h4><a href="post3.html">Maintenance Tips to Keep Your Hardwood Floors Looking New</a></h4>
-                    <p>Follow these simple tips to maintain the beauty and longevity of your hardwood floors.</p>
-                </div>
-            </div>
-
-            <!-- Blog Post 4 -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="blog-card">
-                    <h4><a href="post4.html">The Benefits of Engineered Hardwood Floors</a></h4>
-                    <p>Explore why engineered hardwood floors are a great alternative to solid hardwood.</p>
-                </div>
-            </div>
-
-            <!-- Blog Post 5 -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="blog-card">
-                    <h4><a href="post5.html">Eco-Friendly Flooring Options for Your Home</a></h4>
-                    <p>Discover sustainable flooring options that are good for the environment and your home.</p>
-                </div>
-            </div>
-
-            <!-- Blog Post 6 -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="blog-card">
-                    <h4><a href="post6.html">How to Repair Scratches and Dents in Hardwood Floors</a></h4>
-                    <p>Learn easy DIY methods to fix scratches and dents in your hardwood floors.</p>
-                </div>
-            </div>
-
-            <!-- Blog Post 7 -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="blog-card">
-                    <h4><a href="post7.html">Wide Plank vs. Narrow Plank Hardwood</a></h4>
-                    <p>How to Choose the Best Option for Your Home.</p>
-                </div>
-            </div>
-
-            <!-- Blog Post 8 -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="blog-card">
-                    <h4><a href="post8.html">The Complete Guide to Hardwood Flooring Grades and Finishes</a></h4>
-                    <p>Expert Advice from American Builder Hardwood Floor.</p>
-                </div>
-            </div>
-
-            <!-- Blog Post 9 -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="blog-card">
-                    <h4><a href="post9.html">Best Hardwood Flooring Options for Quincy, MA Homes</a></h4>
-                    <p>Local Climate Considerations from American Builder Hardwood Floor.</p>
-                </div>
-            </div>
-
-            <!-- Blog Post 10 -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="blog-card">
-                    <h4><a href="post10.html">Questions to Ask Before Hiring a Hardwood Flooring Contractor</a></h4>
-                    <p>Ensure You Choose the Right Professional for Your Quincy, MA Home.</p>
-                </div>
-            </div>
-
-            <!-- Blog Post 11 -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="blog-card">
-                    <h4><a href="post11.html">Best Hardwood Flooring for New England Homes</a></h4>
-                    <p>Learn about the best hardwood flooring options that can withstand the unique climate of New England.</p>
-                </div>
-            </div>
-
-            <!-- Blog Post 12 -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="blog-card">
-                    <h4><a href="post12.html">Comparing Hardwood Floor Finishes: Oil vs. Water-Based Polyurethane</a></h4>
-                    <p>Understand the pros and cons of different hardwood floor finishes to choose the best one for your home.</p>
-                </div>
-            </div>
-
-            <!-- Blog Post 13 -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="blog-card">
-                    <h4><a href="post13.html">How Hardwood Floors Increase Your Home's Resale Value in Massachusetts</a></h4>
-                    <p>Discover how investing in hardwood floors can significantly boost your home's market value and appeal to buyers.</p>
+            <!-- Page 3: Post 13 -->
+            <div class="blog-page" id="blog-page-3">
+                <div class="row">
+                    <!-- Blog Post 13 -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 blog-post-item">
+                        <div class="blog-card">
+                            <h4><a href="posts/blog/post13.html">How Hardwood Floors Increase Your Home's Resale Value in Massachusetts</a></h4>
+                            <p>Discover how investing in hardwood floors can significantly boost your home's market value and appeal to buyers.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Blog Navigation -->
+        <div class="blog-navigation">
+            <button class="blog-nav-btn" id="prev-btn" onclick="changeBlogPage(-1)">← Previous</button>
+            <span class="blog-page-indicator">
+                Page <span id="current-page">1</span> of <span id="total-pages">3</span>
+            </span>
+            <button class="blog-nav-btn" id="next-btn" onclick="changeBlogPage(1)">Next →</button>
+        </div>
+
+        <!-- Page Dots -->
+        <div class="blog-dots">
+            <span class="blog-dot active" onclick="goToBlogPage(1)"></span>
+            <span class="blog-dot" onclick="goToBlogPage(2)"></span>
+            <span class="blog-dot" onclick="goToBlogPage(3)"></span>
+        </div>
     </div>
 </section>
+
+<script>
+// Blog Pagination JavaScript
+let currentBlogPage = 1;
+let totalBlogPages = 3;
+let isMobile = false;
+
+// Check if device is mobile
+function checkMobile() {
+    isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+        // On mobile, we have more pages because we show only 3 posts per page
+        totalBlogPages = 5; // Posts 1-3, 4-6, 7-9, 10-12, 13
+        updateMobileDots();
+    } else {
+        // On desktop, we show 6 posts per page
+        totalBlogPages = 3; // Posts 1-6, 7-12, 13
+        updateDesktopDots();
+    }
+    updatePageDisplay();
+}
+
+function updateMobileDots() {
+    const dotsContainer = document.querySelector('.blog-dots');
+    dotsContainer.innerHTML = '';
+    for (let i = 1; i <= 5; i++) {
+        const dot = document.createElement('span');
+        dot.className = `blog-dot${i === 1 ? ' active' : ''}`;
+        dot.onclick = () => goToBlogPage(i);
+        dotsContainer.appendChild(dot);
+    }
+}
+
+function updateDesktopDots() {
+    const dotsContainer = document.querySelector('.blog-dots');
+    dotsContainer.innerHTML = '';
+    for (let i = 1; i <= 3; i++) {
+        const dot = document.createElement('span');
+        dot.className = `blog-dot${i === 1 ? ' active' : ''}`;
+        dot.onclick = () => goToBlogPage(i);
+        dotsContainer.appendChild(dot);
+    }
+}
+
+function changeBlogPage(direction) {
+    const newPage = currentBlogPage + direction;
+    if (newPage >= 1 && newPage <= totalBlogPages) {
+        goToBlogPage(newPage);
+    }
+}
+
+function updatePageDisplay() {
+    if (isMobile) {
+        updateMobilePageDisplay();
+    } else {
+        updateDesktopPageDisplay();
+    }
+}
+
+function updateMobilePageDisplay() {
+    // Hide all pages first
+    document.querySelectorAll('.blog-page').forEach(page => {
+        page.classList.remove('active');
+    });
+    
+    // Show posts based on mobile pagination (3 posts per page)
+    const startPost = (currentBlogPage - 1) * 3 + 1;
+    const endPost = Math.min(startPost + 2, 13);
+    
+    // Determine which desktop page contains our posts
+    let pageToShow = 1;
+    if (startPost <= 6) {
+        pageToShow = 1;
+    } else if (startPost <= 12) {
+        pageToShow = 2;
+    } else {
+        pageToShow = 3;
+    }
+    
+    // Show the appropriate desktop page
+    document.getElementById(`blog-page-${pageToShow}`).classList.add('active');
+    
+    // Hide posts that shouldn't be shown on this mobile page
+    document.querySelectorAll('.blog-post-item').forEach((post, index) => {
+        const postNumber = index + 1;
+        if (postNumber >= startPost && postNumber <= endPost) {
+            post.style.display = 'block';
+        } else {
+            post.style.display = 'none';
+        }
+    });
+}
+
+function updateDesktopPageDisplay() {
+    // Hide all pages first
+    document.querySelectorAll('.blog-page').forEach(page => {
+        page.classList.remove('active');
+    });
+    
+    // Show all posts in the current page
+    document.querySelectorAll('.blog-post-item').forEach(post => {
+        post.style.display = 'block';
+    });
+    
+    // Show the current page
+    document.getElementById(`blog-page-${currentBlogPage}`).classList.add('active');
+}
+
+function goToBlogPage(pageNumber) {
+    // Update dots
+    document.querySelectorAll('.blog-dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === pageNumber - 1);
+    });
+    
+    // Update current page
+    currentBlogPage = pageNumber;
+    
+    // Update page display
+    updatePageDisplay();
+    
+    // Update page indicator
+    document.getElementById('current-page').textContent = currentBlogPage;
+    document.getElementById('total-pages').textContent = totalBlogPages;
+    
+    // Update navigation buttons
+    document.getElementById('prev-btn').disabled = currentBlogPage === 1;
+    document.getElementById('next-btn').disabled = currentBlogPage === totalBlogPages;
+    
+    // Smooth scroll to top of blog section
+    document.getElementById('daily-blog').scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+    });
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    checkMobile();
+    goToBlogPage(1);
+});
+
+// Handle window resize
+window.addEventListener('resize', function() {
+    const wasMobile = isMobile;
+    checkMobile();
+    
+    // If we switched between mobile/desktop, reset to page 1
+    if (wasMobile !== isMobile) {
+        goToBlogPage(1);
+    }
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft') {
+        changeBlogPage(-1);
+    } else if (e.key === 'ArrowRight') {
+        changeBlogPage(1);
+    }
+});
+</script>
